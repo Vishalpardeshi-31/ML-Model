@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML MODEL 4</title>
+  <meta name="description" content="Minimal, premium, futuristic machine learning platform featuring four real-world analytical models.">
+
+  <!-- Futuristic Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fullscreen Animated Particle Canvas -->
+  <canvas id="bgCanvas" class="bg-canvas"></canvas>
+  <div class="ambient-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. HOME VIEW (MINIMAL 4-MODEL PORTAL)                                     -->
+  <!-- ========================================================================= -->
+  <main id="homeView" class="view active-view">
+    <header class="home-header">
+      <h1 class="logo-title">ML MODEL 4</h1>
+      <p class="logo-subtitle">SELECT A MODEL TO BEGIN INFERENCE</p>
+    </header>
+
+    <div class="models-grid">
+      <!-- 01: BRAIN ACTIVITY -->
+      <div class="model-card" data-model="brain" id="card-brain" tabindex="0" role="button" aria-label="Open Brain Activity Model">
+        <div class="card-glass-glow"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="card-num">01</span>
+            <div class="card-badge">UNSUPERVISED</div>
+          </div>
+          <div class="card-icon-wrap">
+            <canvas class="card-mini-canvas" id="miniCanvas-brain" width="120" height="120"></canvas>
+            <div class="card-icon brain-icon">
+              <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/>
+                <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 class="card-name">BRAIN ACTIVITY</h2>
+            <div class="card-algo">K-MEANS</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02: COUNTRY DEVELOPMENT -->
+      <div class="model-card" data-model="country" id="card-country" tabindex="0" role="button" aria-label="Open Country Development Model">
+        <div class="card-glass-glow"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="card-num">02</span>
+            <div class="card-badge">UNSUPERVISED</div>
+          </div>
+          <div class="card-icon-wrap">
+            <canvas class="card-mini-canvas" id="miniCanvas-country" width="120" height="120"></canvas>
+            <div class="card-icon country-icon">
+              <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 class="card-name">COUNTRY DEVELOPMENT</h2>
+            <div class="card-algo">HIERARCHICAL CLUSTERING</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03: FORMULA 1 -->
+      <div class="model-card" data-model="f1" id="card-f1" tabindex="0" role="button" aria-label="Open Formula 1 Model">
+        <div class="card-glass-glow"></div>
+        <div class="card-f1-bg-silhouette"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="card-num">03</span>
+            <div class="card-badge">SUPERVISED</div>
+          </div>
+          <div class="card-icon-wrap">
+            <canvas class="card-mini-canvas" id="miniCanvas-f1" width="120" height="120"></canvas>
+            <div class="card-icon f1-icon">
+              <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 class="card-name">FORMULA 1 RACE OUTCOME</h2>
+            <div class="card-algo">MULTIPLE LINEAR REGRESSION</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04: STUDENT PLACEMENT -->
+      <div class="model-card" data-model="placement" id="card-placement" tabindex="0" role="button" aria-label="Open Student Placement Model">
+        <div class="card-glass-glow"></div>
+        <div class="card-inner">
+          <div class="card-top">
+            <span class="card-num">04</span>
+            <div class="card-badge">SUPERVISED</div>
+          </div>
+          <div class="card-icon-wrap">
+            <canvas class="card-mini-canvas" id="miniCanvas-placement" width="120" height="120"></canvas>
+            <div class="card-icon placement-icon">
+              <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 class="card-name">STUDENT PLACEMENT</h2>
+            <div class="card-algo">LOGISTIC REGRESSION</div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2. MODEL PAGE: BRAIN ACTIVITY (K-MEANS)                                   -->
+  <!-- ========================================================================= -->
+  <section id="modelView-brain" class="view model-view">
+    <div class="view-header">
+      <button class="btn-back" data-target="homeView">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>BACK</span>
+      </button>
+      <div class="view-title-group">
+        <span class="view-badge">MODEL 01 • K-MEANS</span>
+        <h2 class="view-title">BRAIN ACTIVITY PATTERN DISCOVERY</h2>
+      </div>
+    </div>
+
+    <div class="model-layout">
+      <!-- Input Panel -->
+      <div class="panel glass-panel input-panel">
+        <h3 class="panel-heading">SPECTRAL & NEURAL FEATURES</h3>
+        <div class="mode-toggle">
+          <button type="button" class="toggle-btn active" id="toggleBrainPreset">REAL EEG RECORDING</button>
+          <button type="button" class="toggle-btn" id="toggleBrainCustom">CUSTOM FEATURES</button>
+        </div>
+
+        <form id="form-brain" class="model-form">
+          <div id="brain-preset-fields" class="lookup-wrap">
+            <div class="form-group full-width">
+              <label for="brain-epoch-select">Select Verified EEG Epoch (UCI EEG Eye State)</label>
+              <select id="brain-epoch-select" class="form-select">
+                <option value="3" selected>Epoch #3 &mdash; Relaxed Wakefulness / Posterior Alpha (Cluster 1)</option>
+                <option value="2">Epoch #2 &mdash; High-Amplitude Slow-Wave Burst (Cluster 2)</option>
+                <option value="1">Epoch #1 &mdash; Alert Cognitive Engagement (Cluster 3)</option>
+                <option value="median">Dataset Median Baseline Profile</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="brain-custom-fields" class="form-grid hidden">
+            <div class="form-group">
+              <label for="brain-delta">Delta Power (0.5-4 Hz)</label>
+              <input type="number" id="brain-delta" step="0.01" min="0" value="10.39" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-theta">Theta Power (4-8 Hz)</label>
+              <input type="number" id="brain-theta" step="0.01" min="0" value="3.15" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-alpha">Alpha Power (8-13 Hz)</label>
+              <input type="number" id="brain-alpha" step="0.01" min="0" value="2.82" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-beta">Beta Power (13-30 Hz)</label>
+              <input type="number" id="brain-beta" step="0.01" min="0" value="3.33" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-gamma">Gamma Power (30-45 Hz)</label>
+              <input type="number" id="brain-gamma" step="0.01" min="0" value="0.94" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-alpha-rel">Alpha Relative Ratio</label>
+              <input type="number" id="brain-alpha-rel" step="0.01" min="0" max="1" value="0.12" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-beta-rel">Beta Relative Ratio</label>
+              <input type="number" id="brain-beta-rel" step="0.01" min="0" max="1" value="0.14" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-tbr">Theta / Beta Ratio</label>
+              <input type="number" id="brain-tbr" step="0.01" min="0" value="0.96" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-occipital">Occipital Alpha (O1, O2)</label>
+              <input type="number" id="brain-occipital" step="0.01" min="0" value="3.34" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-frontal-asym">Frontal Asymmetry</label>
+              <input type="number" id="brain-frontal-asym" step="0.001" min="-1" max="1" value="-0.004" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-amplitude">Mean Amplitude (&mu;V)</label>
+              <input type="number" id="brain-amplitude" step="1" value="4299" required>
+            </div>
+            <div class="form-group">
+              <label for="brain-variance">Signal Variance</label>
+              <input type="number" id="brain-variance" step="0.01" min="0" value="42.00" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="brain-entropy">Spectral Entropy (nats)</label>
+              <input type="number" id="brain-entropy" step="0.01" value="3.58" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-action btn-brain" id="btn-submit-brain">
+            <span class="btn-text">ANALYZE BRAIN ACTIVITY</span>
+            <div class="btn-spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Visualization & Result Panel -->
+      <div class="panel glass-panel vis-panel">
+        <div class="vis-canvas-container">
+          <canvas id="canvas-brain-vis" class="topic-canvas"></canvas>
+          <div class="vis-hud" id="brain-hud">NEURAL OSCILLATION NETWORK</div>
+        </div>
+
+        <div class="result-box" id="result-brain">
+          <div class="result-placeholder">AWAITING INPUT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 3. MODEL PAGE: COUNTRY DEVELOPMENT (HIERARCHICAL)                         -->
+  <!-- ========================================================================= -->
+  <section id="modelView-country" class="view model-view">
+    <div class="view-header">
+      <button class="btn-back" data-target="homeView">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>BACK</span>
+      </button>
+      <div class="view-title-group">
+        <span class="view-badge">MODEL 02 • HIERARCHICAL CLUSTERING</span>
+        <h2 class="view-title">COUNTRY DEVELOPMENT ANALYSIS</h2>
+      </div>
+    </div>
+
+    <div class="model-layout">
+      <!-- Input Panel -->
+      <div class="panel glass-panel input-panel">
+        <h3 class="panel-heading">NATION SELECTION & INDICATORS</h3>
+        <div class="mode-toggle">
+          <button type="button" class="toggle-btn active" id="toggleCountryLookup">LOOKUP NATION</button>
+          <button type="button" class="toggle-btn" id="toggleCountryCustom">CUSTOM INDICATORS</button>
+        </div>
+
+        <form id="form-country" class="model-form">
+          <div id="country-lookup-fields" class="lookup-wrap">
+            <div class="form-group full-width">
+              <label for="country-select">Select Sovereign Nation</label>
+              <select id="country-select" class="form-select">
+                <option value="">Loading nations from World Bank registry...</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="country-custom-fields" class="form-grid hidden">
+            <div class="form-group">
+              <label for="country-gdp">GDP per Capita ($)</label>
+              <input type="number" id="country-gdp" step="1" min="1" value="12500">
+            </div>
+            <div class="form-group">
+              <label for="country-life">Life Expectancy (Years)</label>
+              <input type="number" id="country-life" step="0.1" min="20" max="100" value="74.5">
+            </div>
+            <div class="form-group">
+              <label for="country-pop">Total Population</label>
+              <input type="number" id="country-pop" step="1000" min="1" value="38000000">
+            </div>
+            <div class="form-group">
+              <label for="country-unemp">Unemployment Rate (%)</label>
+              <input type="number" id="country-unemp" step="0.1" min="0" max="100" value="6.5">
+            </div>
+            <div class="form-group">
+              <label for="country-infant">Infant Mortality (/1000)</label>
+              <input type="number" id="country-infant" step="0.1" min="0" value="12.0">
+            </div>
+            <div class="form-group">
+              <label for="country-health">Healthcare Spend (% GDP)</label>
+              <input type="number" id="country-health" step="0.1" min="0" max="100" value="7.2">
+            </div>
+            <div class="form-group">
+              <label for="country-edu">Education Spend (% GDP)</label>
+              <input type="number" id="country-edu" step="0.1" min="0" max="100" value="4.8">
+            </div>
+            <div class="form-group">
+              <label for="country-internet">Internet Usage (%)</label>
+              <input type="number" id="country-internet" step="0.1" min="0" max="100" value="78.0">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-action btn-country" id="btn-submit-country">
+            <span class="btn-text">ANALYZE COUNTRY</span>
+            <div class="btn-spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Visualization & Result Panel -->
+      <div class="panel glass-panel vis-panel">
+        <div class="vis-canvas-container">
+          <canvas id="canvas-country-vis" class="topic-canvas"></canvas>
+          <div class="vis-hud" id="country-hud">GLOBAL DEVELOPMENT MATRIX</div>
+        </div>
+
+        <div class="result-box" id="result-country">
+          <div class="result-placeholder">AWAITING INPUT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 4. MODEL PAGE: FORMULA 1 RACE OUTCOME (REGRESSION)                        -->
+  <!-- ========================================================================= -->
+  <section id="modelView-f1" class="view model-view f1-dark-theme">
+    <!-- Atmospheric Red Glowing Background Layer with Official F1 Wallpaper -->
+    <div class="f1-ambient-bg">
+      <div class="f1-bg-img-wrap">
+        <div class="f1-bg-img"></div>
+      </div>
+      <div class="f1-red-glow-orb orb-center"></div>
+      <div class="f1-red-glow-orb orb-left"></div>
+      <div class="f1-red-glow-orb orb-right"></div>
+      <div class="f1-carbon-grid-overlay"></div>
+    </div>
+
+    <div class="f1-telemetry-banner">
+      <div class="f1-telemetry-tag"><span class="f1-pulse-dot"></span> CHASSIS: FIA REGULATION SPEC</div>
+      <div class="f1-telemetry-tag">AERO: GROUND EFFECT VENTURI TUNNELS</div>
+      <div class="f1-telemetry-tag">POWER UNIT: 1.6L V6 TURBO HYBRID + MGU-K</div>
+      <div class="f1-telemetry-tag">ALGORITHM: OLS MULTIPLE REGRESSION (R²: 0.564)</div>
+    </div>
+
+    <div class="view-header">
+      <button class="btn-back" data-target="homeView">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>BACK</span>
+      </button>
+      <div class="view-title-group">
+        <span class="view-badge f1-badge">MODEL 03 • MOTORSPORT TELEMETRY ENGINE</span>
+        <h2 class="view-title">FORMULA 1 RACE OUTCOME ANALYSIS</h2>
+      </div>
+    </div>
+
+    <div class="model-layout f1-model-layout">
+      <!-- Input Panel -->
+      <div class="panel glass-panel input-panel f1-panel">
+        <div class="f1-panel-header">
+          <h3 class="panel-heading f1-heading">PRE-RACE TELEMETRY & FORM</h3>
+          <span class="f1-live-badge">TELEMETRY LINK ACTIVE</span>
+        </div>
+
+        <!-- Mode Toggle: Presets vs Custom Tuning -->
+        <div class="mode-toggle f1-mode-toggle">
+          <button type="button" class="toggle-btn active" id="toggleF1Preset">GP RACE SCENARIOS</button>
+          <button type="button" class="toggle-btn" id="toggleF1Custom">CUSTOM TELEMETRY</button>
+        </div>
+
+        <!-- GP Presets Dropdown -->
+        <div id="f1-preset-wrap" class="f1-preset-box">
+          <label for="f1-preset-select" class="f1-input-label">AUTHENTIC GRAND PRIX SCENARIO</label>
+          <select id="f1-preset-select" class="form-select f1-select">
+            <option value="verstappen_aut" selected>Max Verstappen • 2023 Austrian GP (Pole to Dominant Win, P1)</option>
+            <option value="hamilton_bra">Lewis Hamilton • 2021 São Paulo GP (P10 Grid Penalty Charge)</option>
+            <option value="leclerc_bhr">Charles Leclerc • 2022 Bahrain GP (Season Opener Masterclass, P1)</option>
+            <option value="alonso_bhr">Fernando Alonso • 2023 Bahrain GP (Aston Martin Podium Fight, P5)</option>
+            <option value="norris_gbr">Lando Norris • 2023 British GP (McLaren Front Row Heroics, P2)</option>
+            <option value="midfield_alpine">Midfield Battle • Alpine / Haas (P11 Grid Start)</option>
+            <option value="backmarker">Backmarker Grid Start (P19 Grid, +2.15s Pole Gap)</option>
+            <option value="median">Dataset Historical Average Baseline (P10)</option>
+          </select>
+        </div>
+
+        <form id="form-f1" class="model-form">
+          <div class="form-grid f1-form-grid">
+            <div class="form-group">
+              <label for="f1-grid">Starting Grid Position (1 - 20)</label>
+              <div class="f1-input-wrapper">
+                <input type="number" id="f1-grid" min="1" max="25" value="1" required>
+                <span class="f1-grid-pill" id="f1-grid-indicator">ROW 1 • POLE</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="f1-quali">Qualifying Position (1 - 20)</label>
+              <input type="number" id="f1-quali" min="1" max="25" value="1" required>
+            </div>
+            <div class="form-group">
+              <label for="f1-delta">Quali Gap to Pole (Seconds)</label>
+              <input type="number" id="f1-delta" step="0.001" min="0" value="0.000" required>
+            </div>
+            <div class="form-group">
+              <label for="f1-driver-pts">Driver Prior Points</label>
+              <input type="number" id="f1-driver-pts" step="0.5" min="0" value="195.0" required>
+            </div>
+            <div class="form-group">
+              <label for="f1-cons-pts">Constructor Prior Points</label>
+              <input type="number" id="f1-cons-pts" step="0.5" min="0" value="321.0" required>
+            </div>
+            <div class="form-group">
+              <label for="f1-round">Season Calendar Round</label>
+              <input type="number" id="f1-round" min="1" max="24" value="9" required>
+            </div>
+          </div>
+
+          <!-- FIA 5-Light Start Gantry -->
+          <div class="fia-gantry-wrapper">
+            <div class="fia-gantry-title">FIA FORMATION START GANTRY</div>
+            <div class="fia-gantry" id="fiaGantry">
+              <div class="gantry-light" id="gLight1"></div>
+              <div class="gantry-light" id="gLight2"></div>
+              <div class="gantry-light" id="gLight3"></div>
+              <div class="gantry-light" id="gLight4"></div>
+              <div class="gantry-light" id="gLight5"></div>
+            </div>
+            <div class="gantry-status" id="gantryStatus">LIGHTS ARMED • READY FOR RACE START</div>
+          </div>
+
+          <button type="submit" class="btn-action btn-f1" id="btn-submit-f1">
+            <span class="btn-text">RUN RACE OUTCOME SIMULATION</span>
+            <div class="btn-spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Visualization & Result Panel -->
+      <div class="panel glass-panel vis-panel f1-panel">
+        <div class="f1-stage-nav">
+          <div class="f1-stage-tabs">
+            <button type="button" class="f1-stage-tab active" id="tabF1Silhouette">
+              <span class="f1-tab-icon">◈</span> AERO SILHOUETTE
+            </button>
+            <button type="button" class="f1-stage-tab" id="tabF1Blueprint">
+              <span class="f1-tab-icon">⬡</span> CAD BLUEPRINT
+            </button>
+          </div>
+          <div class="f1-stage-status" id="f1StageStatus">AERODYNAMIC STREAMLINES ACTIVE</div>
+        </div>
+
+        <div class="f1-stage-viewport" id="f1StageViewport">
+          <!-- View 1: Dark Rim-Lit Silhouette Hero with dynamic wind tunnel -->
+          <div class="f1-viewport-scene active" id="f1SceneSilhouette">
+            <img src="/assets/f1_silhouette.jpg" alt="Formula 1 Front Chassis Silhouette" class="f1-scene-img" id="f1SilImg" />
+            <canvas id="canvas-f1-aero" class="f1-scene-canvas"></canvas>
+            
+            <!-- Interactive Telemetry Hotspots -->
+            <div class="f1-hotspot hotspot-halo" data-title="TITANIUM HALO COCKPIT" data-desc="125 kN static crash test rating • Driver aerodynamic fairing deflects vortex wash">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-tag">HALO</span>
+            </div>
+            <div class="f1-hotspot hotspot-wing" data-title="GROUND EFFECT FRONT WING" data-desc="Triple cascade endplates channeling Y250 vortex into underfloor venturis">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-tag">FRONT WING</span>
+            </div>
+            <div class="f1-hotspot hotspot-tire-l" data-title="LEFT PIRELLI SLICK (C3)" data-desc="PZero slick compound • Operating heat envelope: 100°C - 110°C">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-tag">TIRE L</span>
+            </div>
+            <div class="f1-hotspot hotspot-tire-r" data-title="RIGHT PIRELLI SLICK (C3)" data-desc="Peak lateral load: 5.4G lateral acceleration through Eau Rouge">
+              <span class="hotspot-pulse"></span>
+              <span class="hotspot-tag">TIRE R</span>
+            </div>
+          </div>
+
+          <!-- View 2: CAD Technical Blueprint Schematic -->
+          <div class="f1-viewport-scene hidden" id="f1SceneBlueprint">
+            <img src="/assets/f1_blueprint.jpg" alt="Formula 1 Technical Blueprint" class="f1-scene-img" />
+            <canvas id="canvas-f1-blueprint" class="f1-scene-canvas"></canvas>
+            <div class="f1-blueprint-watermark">CAD DRAFT SCALE 1:20 • 3600mm WHEELBASE • V6 TURBO HYBRID SPEC</div>
+          </div>
+
+          <!-- Fallback invisible canvas to keep legacy loops alive -->
+          <canvas id="canvas-f1-vis" style="display:none;"></canvas>
+
+          <div class="f1-hud-overlay">
+            <div class="f1-hud-line" id="f1-hud">TELEMETRY: STANDBY • WAITING FOR GRID FORMATION</div>
+            <div class="f1-hotspot-card" id="f1HotspotCard">
+              <span class="hotspot-card-title">INSPECTION TELEMETRY</span>
+              <span class="hotspot-card-desc">Hover over car hotspots to inspect aerodynamic & chassis specs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-box f1-result-box" id="result-f1">
+          <div class="result-placeholder">AWAITING RACE TELEMETRY INPUT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 5. MODEL PAGE: STUDENT PLACEMENT (LOGISTIC REGRESSION)                    -->
+  <!-- ========================================================================= -->
+  <section id="modelView-placement" class="view model-view">
+    <div class="view-header">
+      <button class="btn-back" data-target="homeView">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>BACK</span>
+      </button>
+      <div class="view-title-group">
+        <span class="view-badge">MODEL 04 • LOGISTIC REGRESSION</span>
+        <h2 class="view-title">STUDENT PLACEMENT PREDICTION</h2>
+      </div>
+    </div>
+
+    <div class="model-layout">
+      <!-- Input Panel -->
+      <div class="panel glass-panel input-panel">
+        <h3 class="panel-heading">ACADEMIC & CANDIDATE PROFILE</h3>
+        <form id="form-placement" class="model-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="place-ssc">10th Secondary Exam (%)</label>
+              <input type="number" id="place-ssc" step="0.1" min="0" max="100" value="74.0" required>
+            </div>
+            <div class="form-group">
+              <label for="place-hsc">12th Higher Secondary (%)</label>
+              <input type="number" id="place-hsc" step="0.1" min="0" max="100" value="70.0" required>
+            </div>
+            <div class="form-group">
+              <label for="place-degree">Undergraduate Degree (%)</label>
+              <input type="number" id="place-degree" step="0.1" min="0" max="100" value="68.0" required>
+            </div>
+            <div class="form-group">
+              <label for="place-workex">Work Experience</label>
+              <select id="place-workex" class="form-select" required>
+                <option value="1" selected>Yes (Prior Corporate Work Experience)</option>
+                <option value="0">No (Fresh Graduate)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="place-etest">Aptitude Test Score (%)</label>
+              <input type="number" id="place-etest" step="0.1" min="0" max="100" value="78.0" required>
+            </div>
+            <div class="form-group">
+              <label for="place-mba">MBA Percentage (%)</label>
+              <input type="number" id="place-mba" step="0.1" min="0" max="100" value="65.0" required>
+            </div>
+            <div class="form-group">
+              <label for="place-spec">MBA Specialisation</label>
+              <select id="place-spec" class="form-select" required>
+                <option value="Mkt&Fin" selected>Marketing & Finance (Mkt&Fin)</option>
+                <option value="Mkt&HR">Marketing & HR (Mkt&HR)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="place-field">Undergraduate Field</label>
+              <select id="place-field" class="form-select" required>
+                <option value="Comm&Mgmt" selected>Commerce & Management</option>
+                <option value="Sci&Tech">Science & Technology</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn-action btn-placement" id="btn-submit-placement">
+            <span class="btn-text">PREDICT PLACEMENT</span>
+            <div class="btn-spinner"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Visualization & Result Panel -->
+      <div class="panel glass-panel vis-panel">
+        <div class="vis-canvas-container">
+          <canvas id="canvas-placement-vis" class="topic-canvas"></canvas>
+          <div class="vis-hud" id="placement-hud">LOGISTIC PROBABILITY GAUGE</div>
+        </div>
+
+        <div class="result-box" id="result-placement">
+          <div class="result-placeholder">AWAITING INPUT</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Logic -->
+  <script src="script.js"></script>
+</body>
+</html>

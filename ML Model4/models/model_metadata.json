@@ -1,0 +1,167 @@
+{
+  "project": "ML Model 4",
+  "version": "1.0.0",
+  "models": [
+    {
+      "id": "brain",
+      "name": "Brain Activity Pattern Discovery",
+      "world": "World 01",
+      "learning": "Unsupervised",
+      "algorithm": "K-Means Clustering",
+      "implementation": "stats::kmeans (Hartigan-Wong)",
+      "model_file": "models/brain_kmeans.rds",
+      "dataset_source": "UCI EEG Eye State Dataset (DOI: 10.24432/C57G7J)",
+      "dataset_scale": "233 Real-World Epochs (14 Scalp Electrodes @ 128 Hz)",
+      "optimal_k": 3,
+      "distance_metric": "Standardized Euclidean Distance",
+      "transformations": "log1p on skewed power bands + Z-score standardization",
+      "input_features": [
+        {"name": "delta_power", "type": "float", "unit": "uV^2/Hz", "default": 2.71, "min": 0.0, "max": 100.0, "description": "Slow-wave oscillatory band power (0.5-4.0 Hz)"},
+        {"name": "theta_power", "type": "float", "unit": "uV^2/Hz", "default": 1.49, "min": 0.0, "max": 100.0, "description": "Drowsiness & memory encoding rhythm (4.0-8.0 Hz)"},
+        {"name": "alpha_power", "type": "float", "unit": "uV^2/Hz", "default": 1.41, "min": 0.0, "max": 100.0, "description": "Posterior dominant relaxation rhythm (8.0-13.0 Hz)"},
+        {"name": "beta_power", "type": "float", "unit": "uV^2/Hz", "default": 1.50, "min": 0.0, "max": 100.0, "description": "Active cognitive focus & alert engagement (13.0-30.0 Hz)"},
+        {"name": "gamma_power", "type": "float", "unit": "uV^2/Hz", "default": 0.69, "min": 0.0, "max": 50.0, "description": "High-frequency cross-modal binding (30.0-45.0 Hz)"},
+        {"name": "alpha_relative", "type": "float", "unit": "ratio", "default": 0.14, "min": 0.0, "max": 1.0, "description": "Normalized spectral ratio Alpha / Total Power"},
+        {"name": "beta_relative", "type": "float", "unit": "ratio", "default": 0.16, "min": 0.0, "max": 1.0, "description": "Normalized spectral ratio Beta / Total Power"},
+        {"name": "theta_beta_ratio", "type": "float", "unit": "ratio", "default": 1.17, "min": 0.0, "max": 20.0, "description": "Cognitive arousal marker Theta / Beta"},
+        {"name": "occipital_alpha", "type": "float", "unit": "uV^2/Hz", "default": 1.50, "min": 0.0, "max": 100.0, "description": "Bilateral primary visual cortex alpha power (O1, O2)"},
+        {"name": "frontal_asymmetry", "type": "float", "unit": "index", "default": -0.0003, "min": -1.0, "max": 1.0, "description": "Prefrontal hemispheric valence index (F4 - F3)/(F4 + F3)"},
+        {"name": "mean_amplitude", "type": "float", "unit": "uV", "default": 4302.0, "min": 3000.0, "max": 6000.0, "description": "Baseline potential offset in microvolts"},
+        {"name": "signal_variance", "type": "float", "unit": "uV^2", "default": 4.06, "min": 0.0, "max": 5000.0, "description": "Time-domain signal energy & amplitude dispersion"},
+        {"name": "spectral_entropy", "type": "float", "unit": "nats", "default": 3.37, "min": 0.0, "max": 5.0, "description": "Shannon information entropy of power spectral density"}
+      ],
+      "clusters": [
+        {"id": 1, "name": "Relaxed Wakefulness / Posterior Alpha State", "percentage": 34.33, "epochs": 80, "interpretation": "Elevated occipital alpha synchronization indicating sensory idle or eyes-closed baseline."},
+        {"id": 2, "name": "High-Amplitude Slow-Wave Burst", "percentage": 2.58, "epochs": 6, "interpretation": "Transient delta oscillation bursts or deep synchronized state shifts."},
+        {"id": 3, "name": "Alert Cognitive Engagement / Desynchronized State", "percentage": 63.09, "epochs": 147, "interpretation": "Elevated fast beta power and desynchronized occipital alpha signifying mental alertness."}
+      ],
+      "metrics": {
+        "silhouette_score": 0.2664,
+        "total_wcss": 1849.65,
+        "pca_variance_explained": [40.71, 19.35],
+        "total_pca_variance_2d": 60.06
+      }
+    },
+    {
+      "id": "country",
+      "name": "Country Development Analysis",
+      "world": "World 02",
+      "learning": "Unsupervised",
+      "algorithm": "Hierarchical Clustering",
+      "implementation": "stats::hclust (Ward.D2 Criterion)",
+      "model_file": "models/country_hierarchical.rds",
+      "dataset_source": "World Bank World Development Indicators (WDI) 2020",
+      "dataset_scale": "168 Sovereign Nations across 8 Harmonized Indicators",
+      "optimal_k": 3,
+      "linkage_method": "Ward.D2 (Minimum Variance)",
+      "distance_metric": "Euclidean Distance",
+      "transformations": "log1p on GDP and Population + Z-score standardization",
+      "input_features": [
+        {"name": "gdp_per_capita", "type": "float", "unit": "USD", "default": 8898.0, "min": 100.0, "max": 200000.0, "description": "Nominal Gross Domestic Product per capita"},
+        {"name": "life_expectancy", "type": "float", "unit": "years", "default": 72.0, "min": 40.0, "max": 100.0, "description": "Life expectancy at birth"},
+        {"name": "total_population", "type": "float", "unit": "count", "default": 16000000.0, "min": 10000.0, "max": 2000000000.0, "description": "Total midyear national population"},
+        {"name": "unemployment_rate", "type": "float", "unit": "percent", "default": 8.28, "min": 0.0, "max": 100.0, "description": "Total unemployment (% of total labor force)"},
+        {"name": "infant_mortality", "type": "float", "unit": "per 1000", "default": 19.88, "min": 0.0, "max": 200.0, "description": "Mortality rate under 1 year per 1,000 live births"},
+        {"name": "health_expenditure_pct_gdp", "type": "float", "unit": "percent", "default": 7.00, "min": 0.0, "max": 30.0, "description": "Current healthcare expenditure (% of GDP)"},
+        {"name": "education_expenditure_pct_gdp", "type": "float", "unit": "percent", "default": 4.52, "min": 0.0, "max": 20.0, "description": "Government expenditure on education (% of GDP)"},
+        {"name": "internet_usage_pct", "type": "float", "unit": "percent", "default": 63.39, "min": 0.0, "max": 100.0, "description": "Individuals using the Internet (% of population)"}
+      ],
+      "clusters": [
+        {"id": 1, "name": "Tier 1: Underdeveloped / High Need", "nations": 38, "percentage": 22.62, "mean_gdp": 1234.69, "mean_life_exp": 62.13, "mean_infant_mort": 47.48},
+        {"id": 2, "name": "Tier 2: Developing / Emerging Markets", "nations": 99, "percentage": 58.93, "mean_gdp": 10865.19, "mean_life_exp": 72.97, "mean_infant_mort": 14.35},
+        {"id": 3, "name": "Tier 3: Developed Industrial Economies", "nations": 31, "percentage": 18.45, "mean_gdp": 39669.21, "mean_life_exp": 80.97, "mean_infant_mort": 3.73}
+      ],
+      "metrics": {
+        "cophenetic_correlation": 0.6007,
+        "silhouette_score": 0.1904,
+        "pca_variance_explained": [45.16, 21.51],
+        "total_pca_variance_2d": 66.67
+      }
+    },
+    {
+      "id": "f1",
+      "name": "Formula 1 Race Outcome Analysis",
+      "world": "World 03",
+      "learning": "Supervised",
+      "algorithm": "Multiple Linear Regression",
+      "implementation": "stats::lm (Ordinary Least Squares)",
+      "model_file": "models/f1_regression.rds",
+      "dataset_source": "Ergast / Jolpica F1 Database (Turbo Hybrid Era 2014-2023)",
+      "dataset_scale": "3,890 Driver-Races across 198 Grands Prix",
+      "target_variable": "race_points",
+      "target_description": "Championship points scored in Grand Prix",
+      "temporal_split": "Train: 2014-2021 (3,228 obs, 83.0%) | Test: 2022-2023 (662 obs, 17.0%)",
+      "input_features": [
+        {"name": "grid_position", "type": "int", "unit": "position", "default": 5, "min": 1, "max": 25, "description": "Starting grid position on race start"},
+        {"name": "qualifying_position", "type": "int", "unit": "position", "default": 5, "min": 1, "max": 25, "description": "Official qualifying final classification position"},
+        {"name": "q_delta_to_pole", "type": "float", "unit": "seconds", "default": 0.45, "min": 0.0, "max": 10.0, "description": "Time gap in seconds to pole position lap time"},
+        {"name": "driver_previous_points", "type": "float", "unit": "points", "default": 45.0, "min": 0.0, "max": 600.0, "description": "Cumulative driver points scored prior to this round"},
+        {"name": "constructor_previous_points", "type": "float", "unit": "points", "default": 90.0, "min": 0.0, "max": 1000.0, "description": "Cumulative constructor points scored prior to this round"},
+        {"name": "round", "type": "int", "unit": "round", "default": 8, "min": 1, "max": 24, "description": "Championship calendar round number"}
+      ],
+      "coefficients": {
+        "Intercept": 10.9281,
+        "grid_position": -0.2977,
+        "qualifying_position": -0.2412,
+        "q_delta_to_pole": -0.0007,
+        "driver_previous_points": 0.0369,
+        "constructor_previous_points": 0.0031,
+        "round": -0.2076
+      },
+      "metrics": {
+        "test_r_squared": 0.5644,
+        "train_r_squared": 0.5245,
+        "test_rmse": 4.8213,
+        "train_rmse": 5.0050,
+        "test_mae": 3.3862,
+        "f_statistic": 592.18
+      }
+    },
+    {
+      "id": "placement",
+      "name": "Student Placement Prediction",
+      "world": "World 04",
+      "learning": "Supervised",
+      "algorithm": "Logistic Regression",
+      "implementation": "stats::glm (Family: Binomial, Link: Logit)",
+      "model_file": "models/placement_logistic.rds",
+      "dataset_source": "CMS Business School, Jain University Placement Records",
+      "dataset_scale": "215 Authentic MBA Candidates",
+      "target_variable": "placed",
+      "target_description": "Binary placement status (1 = Placed, 0 = Not Placed)",
+      "threshold": 0.5,
+      "split": "Train: 171 candidates (80%) | Test: 44 candidates (20% Stratified)",
+      "input_features": [
+        {"name": "ssc_percentage", "type": "float", "unit": "percent", "default": 72.0, "min": 35.0, "max": 100.0, "description": "10th grade secondary board examination percentage"},
+        {"name": "hsc_percentage", "type": "float", "unit": "percent", "default": 70.0, "min": 35.0, "max": 100.0, "description": "12th grade higher secondary board examination percentage"},
+        {"name": "degree_percentage", "type": "float", "unit": "percent", "default": 68.0, "min": 40.0, "max": 100.0, "description": "Undergraduate degree examination percentage"},
+        {"name": "work_experience", "type": "int", "unit": "binary", "default": 1, "min": 0, "max": 1, "options": [0, 1], "description": "Prior professional work experience (1 = Yes, 0 = No)"},
+        {"name": "aptitude_test_percentage", "type": "float", "unit": "percent", "default": 75.0, "min": 0.0, "max": 100.0, "description": "Employability entrance / aptitude test percentage"},
+        {"name": "mba_percentage", "type": "float", "unit": "percent", "default": 64.0, "min": 40.0, "max": 100.0, "description": "MBA academic course percentage"},
+        {"name": "mba_specialisation", "type": "string", "default": "Mkt&Fin", "options": ["Mkt&Fin", "Mkt&HR"], "description": "MBA functional specialization"},
+        {"name": "degree_field", "type": "string", "default": "Comm&Mgmt", "options": ["Comm&Mgmt", "Sci&Tech", "Others"], "description": "Undergraduate field of education"}
+      ],
+      "odds_ratios": {
+        "ssc_percentage": 1.2541,
+        "hsc_percentage": 1.1136,
+        "degree_percentage": 1.1398,
+        "work_experience": 9.9884,
+        "aptitude_test_percentage": 0.9712,
+        "mba_percentage": 0.7886,
+        "mba_specialisationMkt&HR": 0.5896,
+        "degree_fieldSci&Tech": 0.3176,
+        "degree_fieldOthers": 0.6283
+      },
+      "metrics": {
+        "test_accuracy": 0.8409,
+        "precision": 0.8966,
+        "recall": 0.8667,
+        "specificity": 0.7857,
+        "f1_score": 0.8814,
+        "roc_auc": 0.9310,
+        "aic": 101.02,
+        "residual_deviance": 81.02
+      }
+    }
+  ]
+}
